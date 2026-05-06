@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VeloChinaParts – Pièces vélo directes de Chine</title>
+<meta name="description" content="Pièces vélo de qualité OEM directement des fabricants chinois. Livraison mondiale en 7–15 jours. Jusqu'à 70% d'économies.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --red: #D85A30; --red-light: #FAECE7; --red-dark: #4A1B0C;
+    --dark: #1a1a1a; --gray: #2C2C2A; --light: #F8F6F0;
+    --gold: #EF9F27; --green: #1D9E75;
+    --text: #2C2C2A; --muted: #888780;
+    --font-head: 'Barlow Condensed', sans-serif;
+    --font-body: 'Barlow', sans-serif;
+  }
+
+  body { font-family: var(--font-body); background: var(--light); color: var(--text); overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    background: var(--dark);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px; position: sticky; top: 0; z-index: 100;
+  }
+  .logo { font-family: var(--font-head); font-weight: 900; font-size: 22px; color: white; letter-spacing: 1px; text-decoration: none; }
+  .logo span { color: var(--red); }
+  .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+  .nav-links a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 13px; font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: white; }
+  .nav-cta { background: var(--red) !important; color: white !important; padding: 7px 16px; border-radius: 4px; font-weight: 600 !important; }
+  .nav-cta:hover { background: #c04e27 !important; }
+  .nav-burger { display: none; background: none; border: none; cursor: pointer; }
+  .nav-burger span { display: block; width: 22px; height: 2px; background: white; margin: 5px 0; border-radius: 2px; }
+
+  /* HERO */
+  .hero {
+    background: var(--dark);
+    position: relative; overflow: hidden;
+    padding: 5rem 2rem 4rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
+    min-height: 520px;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: 0; right: 0;
+    width: 60%; height: 100%;
+    background: linear-gradient(135deg, transparent 40%, rgba(216,90,48,0.08) 100%);
+  }
+  .hero-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--red); font-weight: 600; margin-bottom: 1rem; }
+  .hero h1 { font-family: var(--font-head); font-weight: 900; font-size: 68px; line-height: 0.95; color: white; text-transform: uppercase; margin-bottom: 1.5rem; }
+  .hero h1 em { color: var(--red); font-style: normal; }
+  .hero p { font-size: 16px; color: rgba(255,255,255,0.6); line-height: 1.7; max-width: 420px; margin-bottom: 2rem; font-weight: 300; }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary { background: var(--red); color: white; padding: 14px 28px; border: none; border-radius: 4px; font-family: var(--font-head); font-weight: 700; font-size: 16px; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: background 0.2s, transform 0.1s; text-decoration: none; display: inline-block; }
+  .btn-primary:hover { background: #c04e27; transform: translateY(-1px); }
+  .btn-outline { background: transparent; color: white; padding: 14px 28px; border: 1px solid rgba(255,255,255,0.25); border-radius: 4px; font-family: var(--font-head); font-weight: 600; font-size: 16px; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: all 0.2s; text-decoration: none; display: inline-block; }
+  .btn-outline:hover { border-color: white; }
+
+  .hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; position: relative; z-index: 2; margin-top: 2.5rem; }
+  .stat-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.5rem 1rem; text-align: center; }
+  .stat-num { font-family: var(--font-head); font-size: 42px; font-weight: 900; color: white; line-height: 1; }
+  .stat-num span { color: var(--red); }
+  .stat-label { font-size: 11px; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 1px; margin-top: 0.4rem; }
+
+  .hero-visual { display: flex; justify-content: center; align-items: center; }
+  .hero-wheel {
+    width: 280px; height: 280px; border-radius: 50%;
+    border: 3px solid rgba(216,90,48,0.3);
+    display: flex; align-items: center; justify-content: center; position: relative;
+    animation: spin 20s linear infinite;
+  }
+  .hero-wheel::before { content: ''; position: absolute; width: 200px; height: 200px; border-radius: 50%; border: 2px solid rgba(216,90,48,0.15); }
+  .hero-wheel::after { content: ''; position: absolute; width: 100px; height: 100px; border-radius: 50%; background: rgba(216,90,48,0.1); border: 2px solid rgba(216,90,48,0.2); }
+  @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  .spoke { position: absolute; width: 2px; height: 130px; background: rgba(216,90,48,0.25); transform-origin: center bottom; top: 10px; left: calc(50% - 1px); }
+
+  /* TRUST BAR */
+  .trust-bar {
+    background: var(--red);
+    padding: 0.8rem 2rem;
+    display: flex; gap: 2rem; justify-content: center; align-items: center; flex-wrap: wrap;
+  }
+  .trust-item { display: flex; align-items: center; gap: 0.5rem; color: white; font-size: 13px; font-weight: 500; letter-spacing: 0.3px; }
+
+  /* SECTIONS */
+  section { padding: 4rem 2rem; }
+  .section-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--red); font-weight: 600; margin-bottom: 0.5rem; }
+  .section-title { font-family: var(--font-head); font-size: 42px; font-weight: 800; text-transform: uppercase; color: var(--text); line-height: 1.05; margin-bottom: 1rem; }
+  .section-sub { font-size: 15px; color: var(--muted); line-height: 1.7; max-width: 520px; font-weight: 300; }
+
+  /* CATEGORIES */
+  .categories { background: white; }
+  .cat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
+  .cat-card { border: 1px solid #eee; border-radius: 10px; overflow: hidden; cursor: pointer; transition: all 0.25s; background: white; }
+  .cat-card:hover { border-color: var(--red); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+  .cat-img { height: 140px; display: flex; align-items: center; justify-content: center; font-size: 52px; background: var(--light); }
+  .cat-body { padding: 1rem; }
+  .cat-name { font-family: var(--font-head); font-weight: 700; font-size: 16px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .cat-count { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .cat-price { font-size: 13px; color: var(--green); font-weight: 500; margin-top: 6px; }
+
+  /* HOW IT WORKS */
+  .how { background: var(--dark); }
+  .how .section-title { color: white; }
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 2.5rem; position: relative; }
+  .steps::before { content: ''; position: absolute; top: 28px; left: 10%; right: 10%; height: 1px; background: rgba(255,255,255,0.1); }
+  .step { text-align: center; position: relative; z-index: 1; }
+  .step-num { width: 56px; height: 56px; border-radius: 50%; background: var(--red); color: white; font-family: var(--font-head); font-size: 24px; font-weight: 900; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; }
+  .step-title { font-family: var(--font-head); font-size: 18px; font-weight: 700; text-transform: uppercase; color: white; letter-spacing: 0.5px; margin-bottom: 0.5rem; }
+  .step-desc { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.6; font-weight: 300; }
+
+  /* PRODUCTS */
+  .products { background: var(--light); }
+  .prod-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
+  .prod-card { background: white; border: 1px solid #eee; border-radius: 10px; overflow: hidden; transition: all 0.2s; }
+  .prod-card:hover { border-color: var(--red); box-shadow: 0 6px 20px rgba(0,0,0,0.07); }
+  .prod-img { height: 160px; display: flex; align-items: center; justify-content: center; font-size: 60px; background: var(--light); position: relative; }
+  .badge { position: absolute; top: 12px; left: 12px; background: var(--red); color: white; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 3px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .badge-green { background: var(--green); }
+  .prod-body { padding: 1rem; }
+  .prod-name { font-size: 14px; font-weight: 500; margin-bottom: 4px; }
+  .prod-origin { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  .prod-price { display: flex; align-items: baseline; gap: 8px; margin-top: 0.75rem; flex-wrap: wrap; }
+  .price-main { font-family: var(--font-head); font-size: 24px; font-weight: 800; color: var(--text); }
+  .price-old { font-size: 13px; color: var(--muted); text-decoration: line-through; }
+  .price-savings { font-size: 11px; color: var(--green); font-weight: 600; }
+  .prod-footer { padding: 0 1rem 1rem; display: flex; gap: 8px; }
+  .btn-cart { flex: 1; background: var(--dark); color: white; border: none; padding: 9px 0; border-radius: 5px; font-size: 12px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; cursor: pointer; transition: background 0.2s; }
+  .btn-cart:hover { background: var(--red); }
+  .btn-wish { width: 36px; background: none; border: 1px solid #eee; border-radius: 5px; cursor: pointer; font-size: 16px; transition: all 0.2s; }
+  .btn-wish:hover { border-color: var(--red); color: var(--red); }
+
+  /* WHY US */
+  .why { background: white; }
+  .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 2.5rem; }
+  .why-item { padding: 1.5rem; border-left: 3px solid var(--red); }
+  .why-icon { font-size: 28px; margin-bottom: 0.75rem; }
+  .why-title { font-family: var(--font-head); font-size: 18px; font-weight: 700; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .why-desc { font-size: 14px; color: var(--muted); line-height: 1.6; font-weight: 300; }
+
+  /* DESTINATIONS */
+  .destinations { background: var(--dark); }
+  .destinations .section-title { color: white; }
+  .dest-list { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
+  .dest-tag { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); padding: 6px 14px; border-radius: 4px; font-size: 13px; }
+
+  /* NEWSLETTER */
+  .newsletter { background: var(--red); padding: 3.5rem 2rem; text-align: center; }
+  .newsletter h2 { font-family: var(--font-head); font-size: 38px; font-weight: 900; color: white; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .newsletter p { color: rgba(255,255,255,0.8); font-size: 15px; margin-bottom: 1.5rem; font-weight: 300; }
+  .nl-form { display: flex; gap: 0; max-width: 440px; margin: 0 auto; }
+  .nl-form input { flex: 1; padding: 13px 16px; border: none; border-radius: 4px 0 0 4px; font-size: 14px; font-family: var(--font-body); outline: none; }
+  .nl-btn { background: var(--dark); color: white; border: none; padding: 13px 20px; border-radius: 0 4px 4px 0; font-family: var(--font-head); font-size: 14px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; white-space: nowrap; transition: background 0.2s; }
+  .nl-btn:hover { background: #111; }
+
+  /* FOOTER */
+  footer { background: #111; padding: 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  footer .logo { font-size: 18px; }
+  footer p { color: rgba(255,255,255,0.35); font-size: 12px; }
+  .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  .footer-links a { color: rgba(255,255,255,0.35); text-decoration: none; font-size: 12px; transition: color 0.2s; }
+  .footer-links a:hover { color: white; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; padding: 3rem 1.5rem; min-height: auto; }
+    .hero h1 { font-size: 48px; }
+    .hero-visual { display: none; }
+    .cat-grid { grid-template-columns: repeat(2, 1fr); }
+    .steps { grid-template-columns: repeat(2, 1fr); }
+    .steps::before { display: none; }
+    .prod-grid { grid-template-columns: repeat(2, 1fr); }
+    .why-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .nav-burger { display: block; }
+  }
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 38px; }
+    .section-title { font-size: 30px; }
+    .cat-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .prod-grid { grid-template-columns: 1fr; }
+    .hero-stats { grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+    .stat-num { font-size: 28px; }
+    .trust-bar { gap: 1rem; padding: 0.8rem 1rem; }
+    .trust-item { font-size: 11px; }
+    section { padding: 3rem 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">VELO<span>CHINA</span>PARTS</a>
+  <div class="nav-links" id="navLinks">
+    <a href="#categories">Catalogue</a>
+    <a href="#how">Comment ça marche</a>
+    <a href="#destinations">Livraison</a>
+    <a href="#why">À propos</a>
+    <a href="#newsletter" class="nav-cta">Commander</a>
+  </div>
+  <button class="nav-burger" onclick="document.getElementById('navLinks').style.display = document.getElementById('navLinks').style.display === 'flex' ? 'none' : 'flex'; document.getElementById('navLinks').style.flexDirection='column'; document.getElementById('navLinks').style.position='absolute'; document.getElementById('navLinks').style.top='60px'; document.getElementById('navLinks').style.left='0'; document.getElementById('navLinks').style.right='0'; document.getElementById('navLinks').style.background='#1a1a1a'; document.getElementById('navLinks').style.padding='1rem 2rem';" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <p class="hero-label">Fabricant direct · Chine vers le monde</p>
+    <h1>Pièces vélo<br><em>directes</em><br>usine</h1>
+    <p>Composants de qualité OEM/ODM depuis Shenzhen, Guangzhou et Hangzhou. Livraison mondiale en 7–15 jours. Jusqu'à 70% d'économies sur les prix de détail.</p>
+    <div class="hero-btns">
+      <a href="#categories" class="btn-primary">Voir le catalogue</a>
+      <a href="#newsletter" class="btn-outline">Devis grossiste</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card"><div class="stat-num">12<span>K+</span></div><div class="stat-label">Références</div></div>
+      <div class="stat-card"><div class="stat-num">80<span>+</span></div><div class="stat-label">Pays livrés</div></div>
+      <div class="stat-card"><div class="stat-num">70<span>%</span></div><div class="stat-label">Economies moy.</div></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-wheel">
+      <div class="spoke" style="transform:rotate(0deg)"></div>
+      <div class="spoke" style="transform:rotate(30deg)"></div>
+      <div class="spoke" style="transform:rotate(60deg)"></div>
+      <div class="spoke" style="transform:rotate(90deg)"></div>
+      <div class="spoke" style="transform:rotate(120deg)"></div>
+      <div class="spoke" style="transform:rotate(150deg)"></div>
+      <div class="spoke" style="transform:rotate(180deg)"></div>
+      <div class="spoke" style="transform:rotate(210deg)"></div>
+      <div class="spoke" style="transform:rotate(240deg)"></div>
+      <div class="spoke" style="transform:rotate(270deg)"></div>
+      <div class="spoke" style="transform:rotate(300deg)"></div>
+      <div class="spoke" style="transform:rotate(330deg)"></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item">✈ Livraison express DHL / FedEx / EMS</div>
+  <div class="trust-item">🔒 Paiement sécurisé Stripe / PayPal</div>
+  <div class="trust-item">🏭 Direct fabricant certifié ISO</div>
+  <div class="trust-item">↩ Retours acceptés 30 jours</div>
+</div>
+
+<!-- CATEGORIES -->
+<section class="categories" id="categories">
+  <p class="section-label">Catalogue complet</p>
+  <h2 class="section-title">Toutes les catégories</h2>
+  <p class="section-sub">Des composants pour tous types de vélos — route, VTT, urbain, électrique et BMX.</p>
+  <div class="cat-grid">
+    <div class="cat-card"><div class="cat-img">🔗</div><div class="cat-body"><div class="cat-name">Transmission</div><div class="cat-count">1 240 références</div><div class="cat-price">À partir de 1,80 €</div></div></div>
+    <div class="cat-card"><div class="cat-img">🛑</div><div class="cat-body"><div class="cat-name">Freinage</div><div class="cat-count">890 références</div><div class="cat-price">À partir de 2,40 €</div></div></div>
+    <div class="cat-card"><div class="cat-img">🚴</div><div class="cat-body"><div class="cat-name">Cadres & fourches</div><div class="cat-count">430 références</div><div class="cat-price">À partir de 28 €</div></div></div>
+    <div class="cat-card"><div class="cat-img">⚙️</div><div class="cat-body"><div class="cat-name">Dérailleur & vitesses</div><div class="cat-count">760 références</div><div class="cat-price">À partir de 3,20 €</div></div></div>
+    <div class="cat-card"><div class="cat-img">💡</div><div class="cat-body"><div class="cat-name">Éclairage & électrique</div><div class="cat-count">540 références</div><div class="cat-price">À partir de 4,50 €</div></div></div>
+    <div class="cat-card"><div class="cat-img">🪑</div><div class="cat-body"><div class="cat-name">Selles & potences</div><div class="cat-count">620 références</div><div class="cat-price">À partir de 2,90 €</div></div></div>
+    <div class="cat-card"><div class="cat-img">🔧</div><div class="cat-body"><div class="cat-name">Outillage & entretien</div><div class="cat-count">380 références</div><div class="cat-price">À partir de 0,90 €</div></div></div>
+    <div class="cat-card"><div class="cat-img">🔋</div><div class="cat-body"><div class="cat-name">Batteries & moteurs E-bike</div><div class="cat-count">210 références</div><div class="cat-price">À partir de 45 €</div></div></div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <p class="section-label">Processus simple</p>
+  <h2 class="section-title" style="color:white;">Comment ça marche</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-title">Choisissez</div>
+      <div class="step-desc">Parcourez notre catalogue de 12 000+ pièces. Filtrez par type, marque et budget.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-title">Commandez</div>
+      <div class="step-desc">Passez commande en ligne. Minimum à 30 € pour les particuliers, 150 € pour les revendeurs.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-title">Expédié</div>
+      <div class="step-desc">Votre commande est expédiée depuis Shenzhen sous 24h via DHL, FedEx ou EMS.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-title">Reçu</div>
+      <div class="step-desc">Livraison en 7 à 15 jours partout dans le monde. Suivi en temps réel inclus.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+  <p class="section-label">Meilleures ventes</p>
+  <h2 class="section-title">Produits populaires</h2>
+  <p class="section-sub">Sélectionnés pour leur rapport qualité/prix exceptionnel et leurs avis positifs.</p>
+  <div class="prod-grid">
+    <div class="prod-card">
+      <div class="prod-img">⛓️<span class="badge">–62%</span></div>
+      <div class="prod-body">
+        <div class="prod-name">Chaîne 11 vitesses KMC compatible Shimano / SRAM</div>
+        <div class="prod-origin">🇨🇳 Fabricant Guangzhou · Stock : 2 400 unités</div>
+        <div class="prod-price"><span class="price-main">3,80 €</span><span class="price-old">9,90 €</span></div>
+        <div class="price-savings">Vous économisez 6,10 €</div>
+      </div>
+      <div class="prod-footer"><button class="btn-cart" onclick="alert('Fonctionnalité panier à connecter à votre boutique !')">Ajouter au panier</button><button class="btn-wish">♡</button></div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-img">🛑<span class="badge badge-green">Nouveau</span></div>
+      <div class="prod-body">
+        <div class="prod-name">Étriers de frein hydraulique Shimano MT200 clone</div>
+        <div class="prod-origin">🇨🇳 Fabricant Shenzhen · Stock : 840 unités</div>
+        <div class="prod-price"><span class="price-main">14,50 €</span><span class="price-old">42,00 €</span></div>
+        <div class="price-savings">Vous économisez 27,50 €</div>
+      </div>
+      <div class="prod-footer"><button class="btn-cart" onclick="alert('Fonctionnalité panier à connecter à votre boutique !')">Ajouter au panier</button><button class="btn-wish">♡</button></div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-img">🔋<span class="badge">–55%</span></div>
+      <div class="prod-body">
+        <div class="prod-name">Batterie E-bike 36V 10Ah Li-ion + BMS intégré</div>
+        <div class="prod-origin">🇨🇳 Fabricant Hangzhou · Stock : 320 unités</div>
+        <div class="prod-price"><span class="price-main">68 €</span><span class="price-old">149 €</span></div>
+        <div class="price-savings">Vous économisez 81 €</div>
+      </div>
+      <div class="prod-footer"><button class="btn-cart" onclick="alert('Fonctionnalité panier à connecter à votre boutique !')">Ajouter au panier</button><button class="btn-wish">♡</button></div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-img">⚙️<span class="badge">–48%</span></div>
+      <div class="prod-body">
+        <div class="prod-name">Dérailleur arrière 9/10/11V compatible Shimano Deore</div>
+        <div class="prod-origin">🇨🇳 Fabricant Shenzhen · Stock : 1 100 unités</div>
+        <div class="prod-price"><span class="price-main">8,20 €</span><span class="price-old">15,90 €</span></div>
+        <div class="price-savings">Vous économisez 7,70 €</div>
+      </div>
+      <div class="prod-footer"><button class="btn-cart" onclick="alert('Fonctionnalité panier à connecter à votre boutique !')">Ajouter au panier</button><button class="btn-wish">♡</button></div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-img">💡<span class="badge badge-green">Top vente</span></div>
+      <div class="prod-body">
+        <div class="prod-name">Kit éclairage LED USB rechargeable avant + arrière</div>
+        <div class="prod-origin">🇨🇳 Fabricant Guangzhou · Stock : 3 600 unités</div>
+        <div class="prod-price"><span class="price-main">4,90 €</span><span class="price-old">14,99 €</span></div>
+        <div class="price-savings">Vous économisez 10,09 €</div>
+      </div>
+      <div class="prod-footer"><button class="btn-cart" onclick="alert('Fonctionnalité panier à connecter à votre boutique !')">Ajouter au panier</button><button class="btn-wish">♡</button></div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-img">🪑<span class="badge">–60%</span></div>
+      <div class="prod-body">
+        <div class="prod-name">Selle confort gel memory foam universelle</div>
+        <div class="prod-origin">🇨🇳 Fabricant Chengdu · Stock : 780 unités</div>
+        <div class="prod-price"><span class="price-main">6,40 €</span><span class="price-old">16,00 €</span></div>
+        <div class="price-savings">Vous économisez 9,60 €</div>
+      </div>
+      <div class="prod-footer"><button class="btn-cart" onclick="alert('Fonctionnalité panier à connecter à votre boutique !')">Ajouter au panier</button><button class="btn-wish">♡</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why" id="why">
+  <p class="section-label">Pourquoi nous choisir</p>
+  <h2 class="section-title">Avantages concurrentiels</h2>
+  <div class="why-grid">
+    <div class="why-item"><div class="why-icon">🏭</div><div class="why-title">Direct usine</div><div class="why-desc">Nous travaillons avec plus de 120 fabricants certifiés ISO 9001 en Chine. Zéro intermédiaire, prix au plancher.</div></div>
+    <div class="why-item"><div class="why-icon">✅</div><div class="why-title">Qualité contrôlée</div><div class="why-desc">Chaque lot est inspecté par notre équipe à Shenzhen avant expédition. Photos et rapports disponibles sur demande.</div></div>
+    <div class="why-item"><div class="why-icon">🌍</div><div class="why-title">Livraison mondiale</div><div class="why-desc">80+ pays livrés via DHL Express, FedEx, EMS et China Post. Tracking en temps réel inclus.</div></div>
+    <div class="why-item"><div class="why-icon">🏷️</div><div class="why-title">Prix grossiste dès 1 pièce</div><div class="why-desc">Pas de MOQ obligatoire pour les particuliers. Tarifs dégressifs pour les revendeurs dès 20 unités.</div></div>
+    <div class="why-item"><div class="why-icon">🔄</div><div class="why-title">OEM / Marque blanche</div><div class="why-desc">Faites fabriquer vos pièces avec votre logo. Service OEM disponible à partir de 100 unités par référence.</div></div>
+    <div class="why-item"><div class="why-icon">💬</div><div class="why-title">Support bilingue</div><div class="why-desc">Équipe support en français, anglais et mandarin. Réponse sous 12h, WhatsApp disponible pour les pros.</div></div>
+  </div>
+</section>
+
+<!-- DESTINATIONS -->
+<section class="destinations" id="destinations">
+  <p class="section-label" style="color:var(--red);">Livraison internationale</p>
+  <h2 class="section-title">Nous livrons partout</h2>
+  <div class="dest-list">
+    <span class="dest-tag">🇫🇷 France</span><span class="dest-tag">🇩🇪 Allemagne</span><span class="dest-tag">🇬🇧 Royaume-Uni</span><span class="dest-tag">🇪🇸 Espagne</span><span class="dest-tag">🇮🇹 Italie</span><span class="dest-tag">🇧🇪 Belgique</span><span class="dest-tag">🇨🇭 Suisse</span><span class="dest-tag">🇳🇱 Pays-Bas</span><span class="dest-tag">🇵🇹 Portugal</span><span class="dest-tag">🇺🇸 États-Unis</span><span class="dest-tag">🇨🇦 Canada</span><span class="dest-tag">🇦🇺 Australie</span><span class="dest-tag">🇯🇵 Japon</span><span class="dest-tag">🇧🇷 Brésil</span><span class="dest-tag">🇿🇦 Afrique du Sud</span><span class="dest-tag">🇲🇦 Maroc</span><span class="dest-tag">🇸🇦 Arabie Saoudite</span><span class="dest-tag">🇦🇪 Émirats arabes</span><span class="dest-tag">🇳🇬 Nigeria</span><span class="dest-tag">🇸🇬 Singapour</span><span class="dest-tag">🇲🇽 Mexique</span><span class="dest-tag">🇨🇱 Chili</span><span class="dest-tag">🇦🇷 Argentine</span><span class="dest-tag">+ 57 autres pays</span>
+  </div>
+  <p style="color:rgba(255,255,255,0.35); font-size:13px; margin-top:1.5rem;">Délai moyen : 7–10 jours (express) · 14–21 jours (économique) · Douane & taxes à la charge de l'acheteur selon pays</p>
+</section>
+
+<!-- NEWSLETTER -->
+<div class="newsletter" id="newsletter">
+  <h2>Offres exclusives fabricants</h2>
+  <p>Recevez chaque semaine les nouveaux arrivages et promotions usine directement dans votre boîte mail.</p>
+  <div class="nl-form">
+    <input type="email" placeholder="votre@email.com" />
+    <button class="nl-btn" onclick="alert('Merci ! Vous serez notifié des prochaines offres.')">S'abonner</button>
+  </div>
+</div>
+
+<footer>
+  <a href="#" class="logo">VELO<span>CHINA</span>PARTS</a>
+  <p>© 2025 VeloChinaParts · Shenzhen, Chine · Import / Export Mondial</p>
+  <div class="footer-links">
+    <a href="#">CGV</a>
+    <a href="#">Confidentialité</a>
+    <a href="#">Mentions légales</a>
+    <a href="#">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>
