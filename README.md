@@ -1,2 +1,2 @@
 # velochinaparts
-vnete pieces velo directement de chine 
+vente pieces velo directement de chine 
